@@ -21,6 +21,7 @@ var (
 	requestTimeout = env.GetDuration("REQUEST_TIMEOUT", 10*time.Second)
 	healthEndpoint = env.GetString("HEALTH_ENDPOINT", "/health")
 	formConfigPath = env.GetString("FORM_CONFIG_PATH", "./form.yml")
+	staticFilesDir = env.GetString("STATIC_FILES_DIR", "./static")
 )
 
 func main() {
@@ -61,6 +62,9 @@ func main() {
 		e.Logger.Fatal(err)
 	}
 	e.Renderer = renderer
+
+	// Serve static files
+	e.Static("/assets", staticFilesDir)
 
 	// Set up endpoint for health check
 	e.Any(healthEndpoint, func(c echo.Context) error {

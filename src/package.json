@@ -1,0 +1,21 @@
+{
+  "name": "lms",
+  "version": "1.0.0",
+  "description": "The leads management system",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tailwindcss-cli@latest build ./assets/css/tailwind.css -o ./dist/css/app.css",
+    "build-prod": "NODE_ENV=production npx tailwindcss-cli@latest build ./assets/css/tailwind.css -o ../public/css/app.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dmitry Momot",
+  "license": "Apache License 2.0",
+  "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.2.0",
+    "@tailwindcss/forms": "^0.3.2",
+    "@tailwindcss/typography": "^0.4.0",
+    "autoprefixer": "^10.2.5",
+    "postcss": "^8.2.10",
+    "tailwindcss": "^2.1.1"
+  }
+}
