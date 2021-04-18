@@ -5,10 +5,10 @@ spec:
       git:
         branch: develop
         repo_clone_url: https://github.com/dmitrymomot/lfm.git
-      build_command: npm install && npm run build-prod
+      # build_command: npm install && npm run build-prod
       http_port: 8080
       routes:
-        - /
+        - path: /
       health_check:
         initial_delay_seconds: 30
         period_seconds: 10

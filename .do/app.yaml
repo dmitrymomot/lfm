@@ -1,16 +1,23 @@
-name: lfm-app
+# TODO: set up valid domain
+# domains:
+#   - domain: testapp.yourdomain.com
+#     type: PRIMARY
+#     zone: yourdomain.com # optional
+#     wildcard: false
+
+name: testapp
 services:
   - name: web
     github:
-      repo: dmitrymomot/lfm
-      branch: develop
+      repo: dmitrymomot/testapp
+      branch: master
       deploy_on_push: true
-    build_command: npm install && npm run build-prod
+    # build_command: npm install && npm run build-prod
     http_port: 8080
     routes:
-      - /
+      - path: /
     health_check:
-      initial_delay_seconds: 30
+      initial_delay_seconds: 10
       period_seconds: 10
       timeout_seconds: 3
       success_threshold: 2
@@ -18,9 +25,9 @@ services:
       http_path: /health
     envs:
       - key: APP_PORT
-        value: "8080"
+        value: "8080" # the same as in http_port parameter
       - key: APP_BASE_URL
-        value: http://localhost
+        value: https://testapp.yourdomain.com # the same as in domain section
       - key: DEBUG_MODE
         value: "true"
       - key: HEALTH_ENDPOINT
@@ -31,6 +38,3 @@ services:
         value: ./form.config.yaml
       - key: STATIC_FILES_DIR
         value: ./src/assets
-
-domains:
-  domain: your-domain.com
