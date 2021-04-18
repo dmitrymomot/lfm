@@ -1,0 +1,22 @@
+spec:
+  name: lfm-app
+  services:
+    - name: web
+      git:
+        branch: master
+        repo_clone_url: https://github.com/dmitrymomot/lfm.git
+      envs:
+        - key: APP_PORT
+          value: 8000
+        - key: APP_BASE_URL
+          value: http://localhost
+        - key: DEBUG_MODE
+          value: true
+        - key: HEALTH_ENDPOINT
+          value: /health
+        - key: TEMPLATE_DIR
+          value: ./src/views
+        - key: FORM_CONFIG_PATH
+          value: ./form.config.yaml
+        - key: STATIC_FILES_DIR
+          value: ./src/assets
