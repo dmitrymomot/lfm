@@ -4,7 +4,7 @@ go 1.16
 
 require (
 	github.com/dmitrymomot/go-env v0.1.0
-	github.com/jinzhu/configor v1.2.1 // indirect
+	github.com/jinzhu/configor v1.2.1
 	github.com/labstack/echo/v4 v4.2.2
 	github.com/mattn/go-colorable v0.1.8 // indirect
 	golang.org/x/crypto v0.0.0-20210415154028-4f45737414dc // indirect

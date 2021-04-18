@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"time"
 
 	env "github.com/dmitrymomot/go-env"
 	"github.com/dmitrymomot/lfm"
@@ -14,14 +13,13 @@ import (
 
 // Appliaction environment variables
 var (
-	appPort        = env.GetInt("APP_PORT", 8080)
+	appPort        = env.GetInt("APP_PORT", 8000)
 	appBaseURL     = env.GetString("APP_BASE_URL", "http://localhost")
 	debugMode      = env.GetBool("DEBUG_MODE", false)
-	templateDir    = env.GetString("TEMPLATE_DIR", "./views")
-	requestTimeout = env.GetDuration("REQUEST_TIMEOUT", 10*time.Second)
+	templateDir    = env.GetString("TEMPLATE_DIR", "./src/views")
 	healthEndpoint = env.GetString("HEALTH_ENDPOINT", "/health")
-	formConfigPath = env.GetString("FORM_CONFIG_PATH", "./form.yml")
-	staticFilesDir = env.GetString("STATIC_FILES_DIR", "./static")
+	formConfigPath = env.GetString("FORM_CONFIG_PATH", "./form.config.yaml")
+	staticFilesDir = env.GetString("STATIC_FILES_DIR", "./src/assets")
 )
 
 func main() {
@@ -31,6 +29,7 @@ func main() {
 	e := echo.New()
 	e.Debug = debugMode
 	e.HideBanner = !debugMode
+	e.HTTPErrorHandler = lfm.HTTPErrorHandler
 
 	e.Pre(middleware.NonWWWRedirect())
 	e.Use(middleware.RemoveTrailingSlashWithConfig(middleware.TrailingSlashConfig{
@@ -55,7 +54,6 @@ func main() {
 			http.MethodDelete,
 		},
 	}))
-	e.Use(middleware.TimeoutWithConfig(middleware.TimeoutConfig{Timeout: requestTimeout}))
 
 	renderer, err := lfm.NewRenderer(templateDir)
 	if err != nil {

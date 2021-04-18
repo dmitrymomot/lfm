@@ -1,7 +1,6 @@
 package lfm
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
@@ -15,13 +14,14 @@ func HTTPErrorHandler(err error, c echo.Context) {
 		code = he.Code
 		desc = he.Message
 	}
-	errorPage := fmt.Sprintf("%d.html", code)
-	if err := c.Render(code, errorPage, echo.Map{
+
+	if err := c.Render(code, "error.html", echo.Map{
 		"error_code":        code,
 		"error_message":     http.StatusText(code),
 		"error_description": desc,
 	}); err != nil {
 		c.Logger().Error(err)
 	}
+
 	c.Logger().Error(err)
 }

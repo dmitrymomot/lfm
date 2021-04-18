@@ -4,8 +4,8 @@
   "description": "The leads management system",
   "main": "index.js",
   "scripts": {
-    "build": "npx tailwindcss-cli@latest build ./assets/css/tailwind.css -o ./dist/css/app.css",
-    "build-prod": "NODE_ENV=production npx tailwindcss-cli@latest build ./assets/css/tailwind.css -o ../public/css/app.css",
+    "build": "npx tailwindcss-cli@latest build ./css/tailwind.css -o ./assets/css/app.css",
+    "build-prod": "NODE_ENV=production npx tailwindcss-cli@latest build ./css/tailwind.css -o ./assets/css/app.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Dmitry Momot",
