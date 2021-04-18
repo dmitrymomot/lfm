@@ -5,9 +5,20 @@ spec:
       git:
         branch: develop
         repo_clone_url: https://github.com/dmitrymomot/lfm.git
+      build_command: npm install && npm run build-prod
+      http_port: 8080
+      routes:
+        - /
+      health_check:
+        initial_delay_seconds: 30
+        period_seconds: 10
+        timeout_seconds: 3
+        success_threshold: 2
+        failure_threshold: 2
+        http_path: /health
       envs:
         - key: APP_PORT
-          value: "8000"
+          value: "8080"
         - key: APP_BASE_URL
           value: http://localhost
         - key: DEBUG_MODE
