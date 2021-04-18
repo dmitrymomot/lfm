@@ -1,40 +1,47 @@
-# TODO: set up valid domain
 domains:
   - domain: testapp.dmomot.com
     type: PRIMARY
-    zone: dmomot.com # optional
-    wildcard: false
+    zone: dmomot.com
 
 name: testapp
+region: fra
 services:
-  - name: web
-    github:
-      repo: dmitrymomot/lfm
-      branch: master
-      deploy_on_push: true
-    # build_command: npm install && npm run build-prod
-    http_port: 8080
-    routes:
-      - path: /
-    health_check:
-      initial_delay_seconds: 10
-      period_seconds: 10
-      timeout_seconds: 3
-      success_threshold: 2
-      failure_threshold: 2
-      http_path: /health
-    envs:
+  - envs:
       - key: APP_PORT
-        value: "8080" # the same as in http_port parameter
+        scope: RUN_AND_BUILD_TIME
+        value: "8080"
       - key: APP_BASE_URL
-        value: https://testapp.dmomot.com # the same as in domain section
+        scope: RUN_AND_BUILD_TIME
+        value: https://testapp.dmomot.com
       - key: DEBUG_MODE
+        scope: RUN_AND_BUILD_TIME
         value: "true"
       - key: HEALTH_ENDPOINT
+        scope: RUN_AND_BUILD_TIME
         value: /health
       - key: TEMPLATE_DIR
+        scope: RUN_AND_BUILD_TIME
         value: ./src/views
       - key: FORM_CONFIG_PATH
+        scope: RUN_AND_BUILD_TIME
         value: ./form.config.yaml
       - key: STATIC_FILES_DIR
+        scope: RUN_AND_BUILD_TIME
         value: ./src/assets
+    github:
+      branch: master
+      deploy_on_push: true
+      repo: dmitrymomot/lfm
+    health_check:
+      failure_threshold: 2
+      http_path: /health
+      initial_delay_seconds: 10
+      period_seconds: 10
+      success_threshold: 2
+      timeout_seconds: 3
+    http_port: 8080
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    name: web
+    routes:
+      - path: /
