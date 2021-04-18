@@ -1,0 +1,9 @@
+form:
+  title: Form title
+  button: Send
+  fields:
+    - name: email
+      type: email
+      required: true
+      hidden: false
+      label: Email address
