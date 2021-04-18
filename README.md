@@ -1,7 +1,7 @@
 # The Leads Form Manager
 Collect leads via a form on a website and manage them by simple admin panel.
 
-[![Deploy to DO](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/apps/new?repo=github.com/dmitrymomot/lfm)
+[![Deploy to DO](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/apps/new?repo=github.com/dmitrymomot/lfm/tree/develop)
 
 
 ## Environment Variables
