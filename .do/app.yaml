@@ -1,15 +1,15 @@
 # TODO: set up valid domain
-# domains:
-#   - domain: testapp.yourdomain.com
-#     type: PRIMARY
-#     zone: yourdomain.com # optional
-#     wildcard: false
+domains:
+  - domain: testapp.dmomot.com
+    type: PRIMARY
+    zone: dmomot.com # optional
+    wildcard: false
 
 name: testapp
 services:
   - name: web
     github:
-      repo: dmitrymomot/testapp
+      repo: dmitrymomot/lfm
       branch: master
       deploy_on_push: true
     # build_command: npm install && npm run build-prod
@@ -27,7 +27,7 @@ services:
       - key: APP_PORT
         value: "8080" # the same as in http_port parameter
       - key: APP_BASE_URL
-        value: https://testapp.yourdomain.com # the same as in domain section
+        value: https://testapp.dmomot.com # the same as in domain section
       - key: DEBUG_MODE
         value: "true"
       - key: HEALTH_ENDPOINT

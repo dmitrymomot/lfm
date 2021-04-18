@@ -1,5 +1,5 @@
 spec:
-  name: lfm-app
+  name: lfm-sample-app
   services:
     - name: web
       git:
